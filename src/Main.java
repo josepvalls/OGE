@@ -4,10 +4,12 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import optimization.OrthographicEmbeddingOptimizer;
+import optimization.SegmentLengthEmbeddingComparator;
 import orthographicembedding.DisconnectedGraphs;
 import orthographicembedding.OrthographicEmbedding;
-import orthographicembedding.OrthographicEmbeddingOptimizer;
 import orthographicembedding.OrthographicEmbeddingResult;
+import util.SavePNG;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -66,7 +68,7 @@ public class Main {
 //            System.out.println(g_oe);
             
             if (optimize) {
-                OrthographicEmbeddingOptimizer.optimize(g_oe, g);
+                OrthographicEmbeddingOptimizer.optimize(g_oe, g, new SegmentLengthEmbeddingComparator());
                 if (!g_oe.sanityCheck(false)) System.err.println("The orthographic projection after optimization contains errors!");
             }
             disconnectedEmbeddings.add(g_oe);
